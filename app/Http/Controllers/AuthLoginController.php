@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use JetBrains\PhpStorm\NoReturn;
 use Laravel\Socialite\Facades\Socialite;
 
-class GoogleController extends Controller
+class AuthLoginController extends Controller
 {
     /**
      * Redirect the user to the Google authentication page.
@@ -29,7 +29,7 @@ class GoogleController extends Controller
         $this->_registerOrLogin($googleUser);
 
         // Redirect to the home page or any other desired location
-        return redirect('/');
+        return redirect('interest');
     }
 
 
@@ -137,7 +137,11 @@ class GoogleController extends Controller
 
             // Log the user in
         }
-        Auth::login($userData);
+        else {
+            // If the user already exists, just use the existing user
+            $user = $userData;
+        }
+        Auth::login($user);
 
     }
 

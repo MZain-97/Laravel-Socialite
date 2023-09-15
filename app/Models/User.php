@@ -45,6 +45,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function interests(){
+        return $this->belongsToMany(Interest::class,'user_interests');
+    }
 
 
 
